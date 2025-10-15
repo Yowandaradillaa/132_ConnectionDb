@@ -27,6 +27,17 @@ app.get('/', (req, res) => {
   res.send('Web Service Mahasiswa is running!');
 });
 
+app.get('/biodata', (req, res) => {
+  const sql = 'SELECT * FROM biodata';
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error fetching data:', err);
+      res.status(500).json({ message: 'Gagal mengambil data' });
+    } else {
+      res.json(results);
+    }
+  });
+});
 
 
 

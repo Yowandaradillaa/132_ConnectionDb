@@ -5,15 +5,13 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-// Middleware biar bisa baca body JSON dari request
 app.use(bodyParser.json());
 
-// Koneksi ke MySQL
 const db = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
   port: '3306',
-  password: '12345', // ganti sesuai MySQL kamu
+  password: '12345',
   database: 'mahasiswa'
 });
 
@@ -24,5 +22,11 @@ db.connect((err) => {
   }
   console.log('✅ Connected to MySQL Successfully');
 });
+
+app.get('/', (req, res) => {
+  res.send('Web Service Mahasiswa is running!');
+});
+
+
 
 
